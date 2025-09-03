@@ -19,8 +19,18 @@ def run_sequence(sequence, iteration=0):
             top = action.get("top", 0)
             width = action.get("width", 100)
             height = action.get("height", 100)
-            filename = action.get("filename", "screenshot-{iteration}.png")
-            filename = filename.replace("{iteration}", str(iteration))
+            file_number = action.get("start_index", 0) + iteration 
+            filename_template = action.get("filename", "screenshot-{000}.png")
+            # {000} をゼロ埋めに変換
+            # {000} の 0 の数を取り出して桁数に設定
+            import re
+            match = re.search(r"\{0+\}", filename_template)
+            if match:
+                zeros = len(match.group(0)) - 2  # {000} → 3
+                filename = filename_template.replace(match.group(0), f"{file_number:0{zeros}d}")
+            else:
+                filename = filename_template
+            
             os.makedirs(os.path.dirname(filename), exist_ok=True)
 
             img = pyautogui.screenshot(region=(left, top, width, height))
