@@ -4,33 +4,13 @@
 
 このプロジェクトには2つのPythonスクリプトが含まれています。
 
-1. **images\_to\_pdf.py**: 指定フォルダ内の画像ファイル（PNG/JPG/JPEG）を1つのPDFにまとめる。
+1. GUI操作自動化ツール
 
-2. **automator.py**: JSON設定ファイルに従って、スクリーンショット、キー入力、マウスクリック、待機などの操作を自動化するCLIツール。
-
----
-
-## 1. images\_to\_pdf.py
-
-### 機能
-
-* 指定フォルダ内の画像を取得
-* ファイル名順に並べる
-* PDFに変換し1ページに1画像で出力
-
-### 使い方
-
-```bash
-# フォルダ内の画像を merged.pdf にまとめる
-python images_to_pdf.py ./images/
-
-# 出力ファイル名を指定
-python images_to_pdf.py ./images/ -o mydoc.pdf
-```
+2. 画像PDF化ツール
 
 ---
 
-## 2. automator.py
+## 2. GUI操作自動化ツール
 
 ### 機能
 
@@ -46,7 +26,7 @@ python images_to_pdf.py ./images/ -o mydoc.pdf
 ### 使い方
 
 ```bash
-python automator.py config.json
+make start
 ```
 
 ### JSON設定ファイル例
@@ -64,7 +44,8 @@ python automator.py config.json
           "top": 50,
           "width": 100,
           "height": 100,
-          "filename": "./images/screenshot-{iteration}.png"
+          "start_index": 0,
+          "filename": "./images/screenshot-{000}.png"
         },
         {
           "action": "keyDown",
@@ -78,6 +59,22 @@ python automator.py config.json
     }
   ]
 }
+```
+
+---
+
+## 1. 画像PDF化ツール
+
+### 機能
+
+* 指定フォルダ内の画像を取得
+* ファイル名順に並べる
+* PDFに変換し1ページに1画像で出力
+
+### 使い方
+
+```bash
+make pdf
 ```
 
 ---
