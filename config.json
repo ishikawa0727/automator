@@ -3,11 +3,11 @@
   "sequence": [
     {
       "action": "sleep",
-      "time": 3
+      "time": 5
     },
     {
       "action": "loop",
-      "count": 2362,
+      "count": 300,
       "sequence": [
         {
           "action": "screenshot",
@@ -15,7 +15,8 @@
           "top": 0,
           "width": 1799,
           "height": 1168,
-          "filename": "./images/screenshot-{iteration}.png"
+          "start_index": 0,
+          "filename": "./images/screenshot-{000}.png"
         },
         {
           "action": "keyDown",
